@@ -1,11 +1,11 @@
 {
-   "name": "Nicolas Cage",
-   "phone": "+34555278878278878",
-   "email": "nicolas@lodgify.com",
-   "arrivalDate": "14/04/2023",
-   "departureDate": "20/04/2023",
-   "comment": "Text Comment",
-   "guests": 2,
-   "wrongEmail": "nicolas",
-   "emailError": "123@lodgify.com"
+  "name": "Nicolas Cage",
+  "phone": "+34555278878278878",
+  "email": "nicolas@lodgify.com",
+  "arrivalDate": "14/04/2023",
+  "departureDate": "20/04/2023",
+  "comment": "Text Comment",
+  "guests": 2,
+  "wrongEmail": "nicolas",
+  "emailError": "123@lodgify.com"
 }
