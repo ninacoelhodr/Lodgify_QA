@@ -1,0 +1,38 @@
+{
+  "linksContact":{
+    "privacyLink": "https://policies.google.com/privacy",
+    "termsLink": "https://policies.google.com/terms"
+  },
+  "textsContact": {
+    "send": "Send",
+    "error": "Error",
+    "validateName": "Name is mandatory",
+    "validateEmail": "Email is mandatory",
+    "validateComment": "Comment is mandatory",
+    "incorrectEmail": "The email provided is not valid",
+    "validationMessageGuests": "Value must be greater than or equal to 1."
+  },
+  "locatorsContact": {
+    "sendButton": "button[type=submit]",
+    "calendar": ".DateInput_input",
+    "name": "input[name=name]",
+    "email": "input[name=email]",
+    "phone": "input[data-testid=phone-input]",
+    "comment": ".input > textarea",
+    "guests": "input[name=guests]",
+    "nameError": "input[name=name]+div",
+    "emailError": "input[name=email]+div",
+    "commentError": "textarea[placeholder='Comment']+div",
+    "errorMessage": "div[class='ui error message']",
+    "calendarMonthAndYear": "div[class='CalendarMonth_caption CalendarMonth_caption_1']",
+    "calendarArrow": "svg[class='DayPickerNavigation_svg__horizontal DayPickerNavigation_svg__horizontal_1']"
+  },
+  "locatorsPricing":{
+    "yearlyPlan":"li[data-price-period='2']",
+    "monthlyPlan":"li[data-price-period='1']",
+    "twoYearsPlan":"li[data-price-period='3']",
+    "priceStarter": ".price-card-starter > .price-item > * > .plan-price-2",
+    "priceProfissional": ".price-card-pro > .price-item > * > .plan-price-1",
+    "priceUltimate": ".price-card-pro > .price-item > * > .plan-price-3"
+  }
+}
