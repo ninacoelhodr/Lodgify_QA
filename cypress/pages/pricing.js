@@ -14,8 +14,7 @@ class Pricing {
   }
 
   chooseCurrency(currency) {
-    cy.get('.price-currency-select').select(currency)
-    
+    cy.get(".price-currency-select").select(currency);
   }
 }
 export default new Pricing();

@@ -1,5 +1,5 @@
 {
-  "linksContact":{
+  "linksContact": {
     "privacyLink": "https://policies.google.com/privacy",
     "termsLink": "https://policies.google.com/terms"
   },
@@ -27,10 +27,10 @@
     "calendarMonthAndYear": "div[class='CalendarMonth_caption CalendarMonth_caption_1']",
     "calendarArrow": "svg[class='DayPickerNavigation_svg__horizontal DayPickerNavigation_svg__horizontal_1']"
   },
-  "locatorsPricing":{
-    "yearlyPlan":"li[data-price-period='2']",
-    "monthlyPlan":"li[data-price-period='1']",
-    "twoYearsPlan":"li[data-price-period='3']",
+  "locatorsPricing": {
+    "yearlyPlan": "li[data-price-period='2']",
+    "monthlyPlan": "li[data-price-period='1']",
+    "twoYearsPlan": "li[data-price-period='3']",
     "priceStarter": ".price-card-starter > .price-item > * > .plan-price-2",
     "priceProfissional": ".price-card-pro > .price-item > * > .plan-price-1",
     "priceUltimate": ".price-card-pro > .price-item > * > .plan-price-3"

@@ -76,12 +76,12 @@ Cypress.Commands.add("selectMonth", monthName => {
   });
 });
 
-  Cypress.Commands.add("choosePlan", plan => {
-    if (plan == "Yearly") {
-      cy.get(data.locatorsPricing.yearlyPlan).click();
-    } else if (plan == "Monthly") {
-      cy.get(data.locatorsPricing.monthlyPlan).click();
-    }else {
-      cy.get(data.locatorsPricing.twoYearsPlan).click();
-    }
-  });
+Cypress.Commands.add("choosePlan", plan => {
+  if (plan == "Yearly") {
+    cy.get(data.locatorsPricing.yearlyPlan).click();
+  } else if (plan == "Monthly") {
+    cy.get(data.locatorsPricing.monthlyPlan).click();
+  } else {
+    cy.get(data.locatorsPricing.twoYearsPlan).click();
+  }
+});
