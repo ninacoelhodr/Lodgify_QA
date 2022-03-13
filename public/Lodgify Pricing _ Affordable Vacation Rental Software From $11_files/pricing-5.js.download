@@ -1,0 +1,296 @@
+// for pricing-5 template
+
+(function($) {
+	
+	// Price 1 Array USD
+	var Price1Usd = {
+		1:32, 
+		2:18, 
+		3:14, 
+		4:9, 
+		5:7, 
+		31:6,
+		101:5,
+		501:4
+	};
+	// Price 1 Array EURO
+	var Price1Eur = {
+		1:28, 
+		2:17, 
+		3:13, 
+		4:8, 
+		5:6, 
+		31:5.4,
+		101:4.5,
+		501:3.6
+	};
+	// Price 1 Array GBP
+	var Price1Gbp = {
+		1:24, 
+		2:14, 
+		3:10, 
+		4:7, 
+		5:5.5, 
+		31:4.8,
+		101:4,
+		501:3.2
+	};
+
+
+
+	// Price 3 Array USD
+	var Price3Usd = {
+		1:48, 
+		2:22,
+		3:15,
+		4:13,
+		5:10, 
+		31:8, 
+		101:7,
+		501:6
+	};
+	// Price 3 Array EURO
+	var Price3Eur = {
+		1:43, 
+		2:20,
+		3:13,
+		4:12,
+		5:9, 
+		31:7.2, 
+		101:6.3,
+		501:5.4
+	};
+	// Price 3 Array GBP
+	var Price3Gbp = {
+		1:39, 
+		2:17,
+		3:12,
+		4:10,
+		5:8, 
+		31:6.4, 
+		101:5.6,
+		501:4.8
+	};
+
+
+
+	// Price 2 Array USD
+	var Price2Usd = {
+		1:12, 
+		2:5,
+		3:4,
+		4:3,  
+		8:2,
+		11:1,
+		21:0.5
+	};
+	// Price 2 Array EURO
+	var Price2Eur = {
+		1:11, 
+		2:5,
+		3:4,
+		4:3,  
+		7:2,
+		11:0.9,
+		21:0.45
+	};
+	// Price 2 Array GBP
+	var Price2Gbp = {
+		1:10, 
+		2:4,
+		3:3,
+		6:2,
+		9:1,
+		11:0.8,
+		21:0.4
+	};
+
+	var Ar1Price = Price1Usd;
+	var Ar2Price = Price2Usd;
+	var Ar3Price = Price3Usd;
+	var priceCof = 1; // the cof for Month plan
+	var pricePeriod = 2; // Yearly
+
+	var elemPlan1 = $('.plan-price-1 .total-sum');
+	var elemPlan2 = $('.plan-price-2 .total-sum');
+	var elemPlan3 = $('.plan-price-3 .total-sum');
+
+	// Count total price - function
+	var cardPrice = function(num, elem, priceArr) {
+		var pricePack = 0;
+		var priceCurrent = 0;
+		var priceWithCof = priceMax = priceStandart = 0;
+		var priceTotal = priceTotalMax = 0;
+		for (var i = 1; i <= num; i++) {
+			if(typeof priceArr[i] === 'undefined') {
+			} else {
+				pricePack = priceArr[i];
+			}
+			if(pricePack !== priceCurrent) {
+				priceCurrent = pricePack;
+				//if(elem === elemPlan2 && pricePeriod === 3) {
+				//	priceWithCof = priceCurrent * 0.95; // For starter plan, two years period
+				//} else {
+					priceWithCof = priceCurrent * priceCof;
+				//}
+				priceMax = priceCurrent * 1.43;
+			}
+			priceTotal += priceWithCof;
+			priceTotalMax += priceMax;
+		}
+		//console.log(priceTotal);
+		//elem.html(Math.round(priceTotal));
+		//elem.html(Math.round(priceTotal * 100) / 100);
+
+
+		elem.text(Math.round(priceTotal));
+
+
+		// Show Discuent
+		elem.closest('.price-item').find('.discount-number').text(Math.round(priceTotalMax));
+
+	}
+
+	// Change Currency - function
+	var changeCurrency = function(cur) {
+		let curSelector = $(".price-currency-select");
+		if (cur === 'usd') {
+			cursPre = '$';
+			cursPost = '';
+			Ar1Price = Price1Usd;
+			Ar2Price = Price2Usd;
+			Ar3Price = Price3Usd;
+			curSelector.val('usd');
+		} else if (cur === 'gbp') {
+			cursPre = '£';
+			cursPost = '';
+			Ar1Price = Price1Gbp;
+			Ar2Price = Price2Gbp;
+			Ar3Price = Price3Gbp;
+			curSelector.val('gbp');
+		} else {
+			cursPre = '';
+			cursPost = '€';
+			Ar1Price = Price1Eur;
+			Ar2Price = Price2Eur;
+			Ar3Price = Price3Eur;
+			curSelector.val('eur');
+		}
+		$(".currency-symbol-pre").html(cursPre);
+		$(".currency-symbol-post").html(cursPost);
+		cardPrice($("#scroll-prop-plan").val(), elemPlan1, Ar1Price);
+		cardPrice($("#scroll-prop-plan").val(), elemPlan2, Ar2Price);
+		cardPrice($("#scroll-prop-plan").val(), elemPlan3, Ar3Price);
+	}
+
+	// Magic Line Animation - function
+	var magicLineAnimation = function(elem) {
+		// Magic Line Animation
+		let $thisnav = elem.closest('.price-period-buttons-2 ul');
+		let $thisnavMagicLine = $thisnav.find('.nav-magic-line');
+
+		let $width = elem.outerWidth();
+		let $left = elem.offset().left - $thisnav.offset().left - $width;
+		let $start = 0;
+		$thisnavMagicLine.css({ 'left': $left , 'width': $width });
+	}
+
+	// Click Event by period
+	if ($('.price-period-buttons-2 li').length) {
+		$('.price-period-buttons-2').on('click', 'li:not(.active)', function(event) {
+			event.preventDefault();
+
+			let $this = $(this);
+
+			$this.addClass('active').siblings().removeClass('active');
+			pricePeriod = $this.data('price-period');
+			if (pricePeriod == 1) {
+				priceCof = 1.43;
+				$('.hide-price-period-1').hide();
+				$('.price-discount-cont').hide();
+				//$('.price-card-starter .price-item').addClass('disabled').find('.btn-price-plan-starter').text($('.btn-price-plan-starter').data('text-disable'));
+			} else if (pricePeriod == 2) {
+				priceCof = 1;
+				$('.hide-price-period-1').show();
+				$('.price-discount-cont').show();
+				// if($('.price-card-starter .price-item').hasClass('disabled')) {
+				// 	$('.price-card-starter .price-item').removeClass('disabled').find('.btn-price-plan-starter').text($('.btn-price-plan-starter').data('text'));
+				// }
+				//$('.price-card-starter .price-discount-cont').hide();
+			} else if (pricePeriod == 3) {
+				priceCof = 0.9375;
+				$('.hide-price-period-1').show();
+				// if($('.price-card-starter .price-item').hasClass('disabled')) {
+				// 	$('.price-card-starter .price-item').removeClass('disabled').find('.btn-price-plan-starter').text($('.btn-price-plan-starter').data('text'));
+				// }
+				$('.price-discount-cont').show();
+			}
+
+			let propCount = $('#scroll-prop-plan').val();
+			cardPrice(propCount, elemPlan1, Ar1Price);
+			cardPrice(propCount, elemPlan2, Ar2Price);
+			cardPrice(propCount, elemPlan3, Ar3Price);
+			$('.mob-tab-select').html($this.html()).closest('.tabs-select').removeClass('select-active');
+
+
+			// Magic Line Animation
+			magicLineAnimation($this);
+
+		});
+	}
+
+	// Magic Line Animation when resize window
+	$(window).resize(function() {
+		magicLineAnimation($('.price-period-buttons-2 li.active'));
+	});
+
+	// Activate Price Properties Slider
+	var prSlider = $('#scroll-prop-plan').slider({
+		tooltip: 'hide',
+		value: '1',
+		ticks: [1, 25, 50, 75, 100],
+		ticks_positions: [0, 25, 50, 76, 100],
+		ticks_labels: ['1' ,'25', '50', '75', '100'],
+	});
+
+	$('#scroll-prop-plan').keyup(function(){
+		if($(this).val() == '') {
+
+		} else {
+			$(this).change();
+		}
+	})
+
+	$('#scroll-prop-plan').change(function() {
+		let val = $(this).val();
+
+		if(val < 1) {
+			val = 1;
+		} else if (val > 100) {
+			val = 100;
+		}
+		prSlider.slider('setValue', val);
+		cardPrice(val, elemPlan1, Ar1Price);
+		cardPrice(val, elemPlan2, Ar2Price);
+		cardPrice(val, elemPlan3, Ar3Price);
+	});
+
+	$('.price-currency-select').on('change', function() {
+		changeCurrency($(this).val());
+	});
+
+	// console.log(Cookies.get('ngx_geoip_cc'));
+	if( Cookies.get('ngx_geoip_cc') == "GB" ) {
+		changeCurrency('gpb');
+	} else if( $('body').hasClass('body-lang-en') ) {
+		changeCurrency('usd');
+	} else {
+		changeCurrency('eur');
+	}
+
+	elemPlan1.html(Math.round(Ar1Price[1]));
+	elemPlan2.html(Math.round(Ar2Price[1]));
+	elemPlan3.html(Math.round(Ar3Price[1]));
+
+})(jQuery);
+

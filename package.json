@@ -1,0 +1,21 @@
+{
+  "name": "lodgify-automation-qa-test",
+  "description": "Lodgify QA automation challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GilbertoGNG/Lodgify-Automation-QA-Test.git"
+  },
+  "author": "Lodgify QA Team",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^9.0.0"
+  },
+  "scripts": {
+    "dev-server": "node server/server.js",
+    "install-all": "npm install && cd server && npm install",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run --browser chrome"
+  }
+}
