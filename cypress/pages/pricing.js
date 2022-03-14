@@ -9,12 +9,12 @@ class Pricing {
   }
 
   chooseRentals(rentals) {
-    cy.get('input[id="scroll-prop-plan"]').clear();
-    cy.get('input[id="scroll-prop-plan"]').type(rentals);
+    cy.get(data.locatorsContact.rentals).clear();
+    cy.get(data.locatorsContact.rentals).type(rentals);
   }
 
   chooseCurrency(currency) {
-    cy.get(".price-currency-select").select(currency);
+    cy.get(data.locatorsContact.currency).select(currency);
   }
 }
 export default new Pricing();
