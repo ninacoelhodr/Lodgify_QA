@@ -15,5 +15,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: npm install && cd server && npm install
-      - run: npx cypress run --browser chrome
+      - run: npm run install-all
+      - run: npm run dev-server
+      - run: npm run cy:run
