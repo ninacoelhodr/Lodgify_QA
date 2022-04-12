@@ -1,0 +1,23 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          npm run install-all
+      - name: Start server in the background
+        run: |
+          npm run dev-server &
+          sleep 5 && 
+          curl http://localhost:8080 -I    
+      - name: Run Cypress
+        uses: cypress-io/github-action@v2
+        with:
+         browser: chrome
+         headless: true
+
+
