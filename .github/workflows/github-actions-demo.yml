@@ -17,4 +17,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: npm run install-all
       - run: npm run dev-server
+  Cypress:
+      runs-on: ubuntu-latest
+      steps:
       - run: npm run cy:run
