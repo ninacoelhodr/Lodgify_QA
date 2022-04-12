@@ -16,8 +16,9 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: npm run install-all
-      - run: npm run dev-server
+      - run: npm run cy:run 
   Cypress:
       runs-on: ubuntu-latest
       steps:
-      - run: npm run cy:run
+          - run: npm run install-all
+          - run: npm run dev-server
