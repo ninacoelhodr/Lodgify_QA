@@ -15,10 +15,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: npm run install-all
+      - name: "Install all dependencies"
+        run: |
+         npm run install-all
+      - name: Start server in the background
+        run: |
+         npm run dev-server &
+          sleep 5 && 
+          curl http://localhost:8080 -I
       - run: npm run cy:run 
-  Cypress:
-      runs-on: ubuntu-latest
-      steps:
-          - run: npm run install-all
-          - run: npm run dev-server
