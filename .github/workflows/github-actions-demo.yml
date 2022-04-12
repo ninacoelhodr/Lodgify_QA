@@ -23,4 +23,5 @@ jobs:
          npm run dev-server &
           sleep 10 && 
           curl http://localhost:8080 -I
-      - run: npm run cy:run 
+          npm run cy:run 
+
