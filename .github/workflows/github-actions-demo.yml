@@ -1,7 +1,7 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -21,7 +21,15 @@ jobs:
       - name: Start server in the background
         run: |
          npm run dev-server &
-          sleep 20 && 
-          curl http://localhost:8080 -I
-          npm run cy:run 
+          sleep 20
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: "Install all dependencies"
+        run: |
+         npm run install-all
+      - run: npm run cy:run
 
