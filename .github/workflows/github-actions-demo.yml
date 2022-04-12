@@ -4,32 +4,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Install dependencies
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: "Install all dependencies"
-        run: |
-         npm run install-all
+          npm run install-all
       - name: Start server in the background
         run: |
-         npm run dev-server &
-          sleep 20
-  test:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: "Install all dependencies"
-        run: |
-         npm run install-all
-      - run: npm run cy:run
+          npm run dev-server &
+          sleep 5 && 
+          curl http://localhost:8080 -I    
+      - name: Run Cypress
+        uses: cypress-io/github-action@v2
+        with:
+         browser: chrome
+         headless: true
+
 
