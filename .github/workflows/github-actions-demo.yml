@@ -21,7 +21,7 @@ jobs:
       - name: Start server in the background
         run: |
          npm run dev-server &
-          sleep 10 && 
+          sleep 20 && 
           curl http://localhost:8080 -I
           npm run cy:run 
 
